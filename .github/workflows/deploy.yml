@@ -2,7 +2,7 @@ name: Deploy and Keep Alive
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: '*/5 * * * *'
 
