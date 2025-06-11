@@ -2,11 +2,11 @@ name: Deploy and Keep Alive
 
 on:
   push:
-    branches: [ master ]  # Ganti jadi master
+    branches: [ master ]
   schedule:
     - cron: '*/5 * * * *'
 
-permissions:  # Tambah ini
+permissions:
   contents: read
   pages: write
   id-token: write
@@ -23,12 +23,11 @@ jobs:
           node-version: '16'
           
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install    # Hapus cd items-dat-api
           
       - name: Start API
         run: |
-          node index.js &
+          node index.js &   # Hapus cd items-dat-api
           sleep 5
           
       - name: Keep alive ping
