@@ -2,9 +2,14 @@ name: Deploy and Keep Alive
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ]  # Ganti jadi master
   schedule:
-    - cron: '*/5 * * * *'  # Runs every 5 minutes
+    - cron: '*/5 * * * *'
+
+permissions:  # Tambah ini
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   keep-alive:
@@ -26,7 +31,7 @@ jobs:
         run: |
           cd items-dat-api
           node index.js &
-          sleep 5  # Wait for server to start
+          sleep 5
           
       - name: Keep alive ping
         run: curl http://localhost:3000/health || exit 0
