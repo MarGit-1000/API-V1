@@ -1,0 +1,32 @@
+name: Deploy and Keep Alive
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '*/5 * * * *'  # Runs every 5 minutes
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          
+      - name: Install dependencies
+        run: |
+          cd items-dat-api
+          npm install
+          
+      - name: Start API
+        run: |
+          cd items-dat-api
+          node index.js &
+          sleep 5  # Wait for server to start
+          
+      - name: Keep alive ping
+        run: curl http://localhost:3000/health || exit 0
