@@ -2,7 +2,7 @@ name: Deploy and Keep Alive
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   schedule:
     - cron: '*/5 * * * *'  # Runs every 5 minutes
 
