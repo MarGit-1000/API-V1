@@ -24,12 +24,10 @@ jobs:
           
       - name: Install dependencies
         run: |
-          cd items-dat-api
           npm install
           
       - name: Start API
         run: |
-          cd items-dat-api
           node index.js &
           sleep 5
           
